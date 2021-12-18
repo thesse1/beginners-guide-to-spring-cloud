@@ -18,6 +18,7 @@ public class NameServiceTest {
 	public void getNameTest() throws Exception {
 		RestTemplate rest = mock(RestTemplate.class);
 		doReturn("Ryan").when(rest).getForObject(eq("http://localhost:7070"), eq(String.class));
+		doReturn("Ryan").when(rest).getForObject(eq("https://thesname1.azurewebsites.net"), eq(String.class));
 		NameService nameService = new NameService(rest);
 		String name = nameService.getName();
 		assertEquals(name, "Ryan");

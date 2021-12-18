@@ -23,6 +23,9 @@ public class GreetingServiceTest {
 		doReturn("Hello").when(rest).getForObject(eq("http://localhost:9090"), eq(String.class));
 		doReturn("Hello").when(rest).getForObject(eq("http://localhost:9090/en"), eq(String.class));
 		doReturn("Hola").when(rest).getForObject(eq("http://localhost:9090/es"), eq(String.class));
+		doReturn("Hello").when(rest).getForObject(eq("https://thesgreeting1.azurewebsites.net"), eq(String.class));
+		doReturn("Hello").when(rest).getForObject(eq("https://thesgreeting1.azurewebsites.net/en"), eq(String.class));
+		doReturn("Hola").when(rest).getForObject(eq("https://thesgreeting1.azurewebsites.net/es"), eq(String.class));
 		greetingService = new GreetingService(rest);
 	}
 

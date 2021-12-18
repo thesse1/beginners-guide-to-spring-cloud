@@ -20,7 +20,7 @@ public class NameController {
 
 	@RequestMapping
 	public String getName() {
-		LOG.info("Name: " + nameProperties.getName());
-		return nameProperties.getName();
+		LOG.info("Name: " + nameProperties.getFirstName());
+		return nameProperties.getFirstName();
 	}
 }

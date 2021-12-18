@@ -115,7 +115,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			<plugin>
+<!--			<plugin>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-contract-maven-plugin</artifactId>
 				<version>1.2.1.RELEASE</version>
@@ -123,7 +123,7 @@
 				<configuration>
 					<packageWithBaseClasses>com.example.demo.base</packageWithBaseClasses>
 				</configuration>
-			</plugin>
+			</plugin>-->
 		</plugins>
 	</build>
 

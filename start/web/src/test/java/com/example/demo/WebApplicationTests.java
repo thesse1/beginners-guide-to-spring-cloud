@@ -37,6 +37,8 @@ public class WebApplicationTests {
 	public void setup() {
 		doReturn("Ryan").when(restTemplate).getForObject(eq("http://localhost:7070"), eq(String.class));
 		doReturn("Hello").when(restTemplate).getForObject(eq("http://localhost:9090/en"), eq(String.class));
+		doReturn("Ryan").when(restTemplate).getForObject(eq("https://thesname1.azurewebsites.net"), eq(String.class));
+		doReturn("Hello").when(restTemplate).getForObject(eq("https://thesgreeting1.azurewebsites.net/en"), eq(String.class));
 	}
 
 	@Test
