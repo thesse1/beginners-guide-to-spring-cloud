@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: k8s-greeting
+  name: k8s-greeting
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: k8s-greeting
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: k8s-greeting
+    spec:
+      containers:
+      - image: thesse1/greeting:latest
+        name: greeting
+        resources: {}
+status: {}

@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: k8s-web
+  name: k8s-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: k8s-web
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: k8s-web
+    spec:
+      containers:
+      - image: thesse1/web:latest
+        name: web
+        resources: {}
+status: {}
