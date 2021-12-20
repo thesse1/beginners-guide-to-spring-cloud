@@ -1,8 +1,5 @@
 package com.example.demo;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestConfiguration;
@@ -18,12 +15,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Matchers.eq;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 
-@RunWith(SpringRunner.class)
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
+
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, properties = {"spring.cloud.config.enabled:false"})
 public class WebApplicationTests {
 
@@ -33,12 +32,18 @@ public class WebApplicationTests {
 	@MockBean
 	RestTemplate restTemplate;
 
-	@Before
+	@BeforeEach
 	public void setup() {
 		doReturn("Ryan").when(restTemplate).getForObject(eq("http://localhost:7070"), eq(String.class));
 		doReturn("Hello").when(restTemplate).getForObject(eq("http://localhost:9090/en"), eq(String.class));
-		doReturn("Ryan").when(restTemplate).getForObject(eq("https://thesname1.azurewebsites.net"), eq(String.class));
-		doReturn("Hello").when(restTemplate).getForObject(eq("https://thesgreeting1.azurewebsites.net/en"), eq(String.class));
+		doReturn("Ryan").when(restTemplate).getForObject(eq("http://host.docker.internal:7070"), eq(String.class));
+		doReturn("Hello").when(restTemplate).getForObject(eq("http://host.docker.internal:9090/en"), eq(String.class));
+		doReturn("Ryan").when(restTemplate).getForObject(eq("http://172.21.254.123:7070"), eq(String.class));
+		doReturn("Ryan").when(restTemplate).getForObject(eq("http://k8s-name.default.svc.cluster.local:7070"), eq(String.class));
+		doReturn("Hello").when(restTemplate).getForObject(eq("http://172.21.254.123:9090/en"), eq(String.class));
+		doReturn("Hello").when(restTemplate).getForObject(eq("http://k8s-greeting.default.svc.cluster.local:9090/en"), eq(String.class));
+		doReturn("Ryan").when(restTemplate).getForObject(eq("https://thesname2.azurewebsites.net"), eq(String.class));
+		doReturn("Hello").when(restTemplate).getForObject(eq("https://thesgreeting2.azurewebsites.net/en"), eq(String.class));
 	}
 
 	@Test

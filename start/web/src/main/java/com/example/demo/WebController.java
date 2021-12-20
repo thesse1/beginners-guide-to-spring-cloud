@@ -22,7 +22,7 @@ public class WebController {
 		this.greetingService = greetingService;
 	}
 
-	@RequestMapping
+	@RequestMapping(path = "/")
 	public String index(HttpServletRequest request) {
 		String locale = RequestContextUtils.getLocaleResolver(request).resolveLocale(request).toLanguageTag();
 		String greeting =  new StringBuilder().append(greetingService.getGreeting(locale)).

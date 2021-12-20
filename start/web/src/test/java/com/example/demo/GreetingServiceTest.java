@@ -1,12 +1,12 @@
 package com.example.demo;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.web.client.RestTemplate;
 
-import static org.junit.Assert.*;
-import static org.mockito.Matchers.eq;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 
@@ -17,19 +17,28 @@ public class GreetingServiceTest {
 
 	private GreetingService greetingService;
 
-	@Before
+	@BeforeEach
 	public void setup() {
 		RestTemplate rest = mock(RestTemplate.class);
 		doReturn("Hello").when(rest).getForObject(eq("http://localhost:9090"), eq(String.class));
 		doReturn("Hello").when(rest).getForObject(eq("http://localhost:9090/en"), eq(String.class));
 		doReturn("Hola").when(rest).getForObject(eq("http://localhost:9090/es"), eq(String.class));
-		doReturn("Hello").when(rest).getForObject(eq("https://thesgreeting1.azurewebsites.net"), eq(String.class));
-		doReturn("Hello").when(rest).getForObject(eq("https://thesgreeting1.azurewebsites.net/en"), eq(String.class));
-		doReturn("Hola").when(rest).getForObject(eq("https://thesgreeting1.azurewebsites.net/es"), eq(String.class));
+		doReturn("Hello").when(rest).getForObject(eq("http://host.docker.internal:9090"), eq(String.class));
+		doReturn("Hello").when(rest).getForObject(eq("http://host.docker.internal:9090/en"), eq(String.class));
+		doReturn("Hola").when(rest).getForObject(eq("http://host.docker.internal:9090/es"), eq(String.class));
+		doReturn("Hello").when(rest).getForObject(eq("http://172.21.254.123:9090"), eq(String.class));
+		doReturn("Hello").when(rest).getForObject(eq("http://172.21.254.123:9090/en"), eq(String.class));
+		doReturn("Hola").when(rest).getForObject(eq("http://172.21.254.123:9090/es"), eq(String.class));
+		doReturn("Hello").when(rest).getForObject(eq("http://k8s-greeting.default.svc.cluster.local:9090"), eq(String.class));
+		doReturn("Hello").when(rest).getForObject(eq("http://k8s-greeting.default.svc.cluster.local:9090/en"), eq(String.class));
+		doReturn("Hola").when(rest).getForObject(eq("http://k8s-greeting.default.svc.cluster.local:9090/es"), eq(String.class));
+		doReturn("Hello").when(rest).getForObject(eq("https://thesgreeting2.azurewebsites.net"), eq(String.class));
+		doReturn("Hello").when(rest).getForObject(eq("https://thesgreeting2.azurewebsites.net/en"), eq(String.class));
+		doReturn("Hola").when(rest).getForObject(eq("https://thesgreeting2.azurewebsites.net/es"), eq(String.class));
 		greetingService = new GreetingService(rest);
 	}
 
-	@After
+	@AfterEach
 	public void teardown() {
 		greetingService = null;
 	}
