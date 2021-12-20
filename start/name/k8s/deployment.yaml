@@ -21,4 +21,7 @@ spec:
       - image: thesse1/name:latest
         name: name
         resources: {}
+        envFrom:
+          - configMapRef:
+              name: firstname
 status: {}

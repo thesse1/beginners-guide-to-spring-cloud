@@ -1,0 +1,7 @@
+apiVersion: v1
+data:
+  greeting: Hi
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: greeting

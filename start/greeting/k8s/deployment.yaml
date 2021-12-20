@@ -21,4 +21,7 @@ spec:
       - image: thesse1/greeting:latest
         name: greeting
         resources: {}
+        envFrom:
+          - configMapRef:
+              name: greeting
 status: {}
